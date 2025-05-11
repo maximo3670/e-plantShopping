@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import './ProductList.css';
 import CartItem from './CartItem';
 import { addItem } from './CartSlice'; // Import addItem from CartSlice to dispatch it
+import { useDispatch } from 'react-redux';
 
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [addedToCart, setAddedToCart] = useState({}); // To track products added to the cart
+    const dispatch = useDispatch();
 
     const plantsArray = [
         {
@@ -241,7 +243,7 @@ function ProductList({ onHomeClick }) {
         }));
 
         // Dispatch the plant to the global cart using CartSlice's addItem reducer
-        addItem(plant);
+        dispatch(addItem(plant));
     };
 
     return (
